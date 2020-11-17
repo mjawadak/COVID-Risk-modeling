@@ -4,13 +4,19 @@
 </header>
 
 
-This code allows us to simulate the spread of COVID-19 in urban environments (e.g. a city).
+This code allows us to simulate the spread of COVID-19 in urban environments (e.g. a city) and analyse the results.
 
+
+# How to run the simulations: 
 To use the code we have first specify the parameters in the config.json file, which represents a given scenario, and then run the simulations by executing the run_simulation.py file locally on the machine.
 
 ```python run_simulation.py```
 
 In the config.json file, we have several parameters. These parameters include the population size, the number of different locations, the epidemic model parameters and the parameters to specify different scenarios e.g., lockdowns, self-isolation and contact tracing. A description of these parameters is given below:
+
+# Analyse the results:
+```python run_simulation.py```
+ 
 
 # Parameters in the config.json file: 
 |Parameter Name|Parameter Description
