@@ -13,7 +13,6 @@ To use the code we have first specify the parameters in the config.json file, wh
 In the config.json file, we have several parameters. These parameters include the population size, the number of different locations, the epidemic model parameters and the parameters to specify different scenarios e.g., lockdowns, self-isolation and contact tracing. A description of these parameters is given below:
 
 # Parameters in the config.json file: 
-
 |Parameter Name|Parameter Description
 |---|---|
 |**start_date**| specify the start date of the simulation
