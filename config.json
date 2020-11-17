@@ -9,7 +9,16 @@
       "hospital": 15,
       "market": 40
     },
-    "POPULATION": 10000,
+    "POPULATION": {
+      "count": 10000,
+      "distribution": {
+        "5-15": 0.18,
+        "15-25":0.19,
+        "25-55":0.46,
+        "55-65":0.10,
+        "65-80":0.07
+      }
+    },
     "SCALE_FACTOR": 1,
     "INTERVENTION_INFO": {
       "flag": true,

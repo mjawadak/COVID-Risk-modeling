@@ -13,24 +13,13 @@ def getData():
 
     age_vs_deathRate = pd.read_csv("data/age_vs_deathRate.csv")
 
-    '''cur.execute("""select gender
-    ,zeroifnull(sum(case when status = 'Deceased' then 1 end)) as death_count
-    ,zeroifnull(sum(case when status = 'Recovered' then 1 end)) as recovered_count
-    ,zeroifnull(100*death_count/nullifzero(recovered_count +death_count)) as death_rate
-    from ADLDEMO_COVID19_GDC.cases_consolidated
-    group by 1
-    order by 1 
-    where gender is not null;""")
-    res = cur.fetchall()
-    gender_vs_deathRate=pd.DataFrame(res,columns=["gender","death_count","recovered_count","death_rate"]).dropna()'''
-
     gender_vs_deathRate = pd.read_csv("data/gender_vs_deathRate.csv")
 
     gender_factor_list = gender_vs_deathRate["death_rate"].values / np.max(gender_vs_deathRate["death_rate"].values)
     #print("gender_factor_list",gender_factor_list)
 
     age_risk_factor_list = age_vs_deathRate["death_rate"].values / np.max(age_vs_deathRate["death_rate"].values)
-    #print("age_factor_list", age_risk_factor_list)
+
     ages = age_vs_deathRate["age_bin"].values
 
     # con.close()
@@ -41,13 +30,6 @@ def getData():
 ages,age_risk_factor_list,gender_factor_list = getData() # fetch the data from transcend
 
 f_age = interp1d(ages,age_risk_factor_list,kind='cubic') # a continuous function for age
-# to build the age_Factor table in vantage
-'''print("age, age_factor")
-for age in np.arange(99):
-    if age<=80:
-        print(age,np.max([f_age(age),0]))
-    else:
-        print(age,1.0)'''
 
 
 def get_infectiousness(x):
@@ -84,11 +66,6 @@ def getRiskIndividual(age,number_of_people_around,gender=None,nearby_infected_in
         gender_factor = 0
         normalization_factor = normalization_factor - WEIGHTS["gender"]
 
-    '''age_bracket = int(age/10)
-    if age_bracket < len(age_risk_factor_list):
-        age_factor = age_risk_factor_list[age_bracket]
-    else:
-        age_factor = age_risk_factor_list[-1]'''
     
     if age<=80:
         age_factor = np.max([f_age(age),0])
@@ -149,6 +126,7 @@ def get_geo_risk(avg_age,avg_gender,avg_days_since_infection,number_of_people_ar
     return risk,age_factor,gender_factor,proximity_factor,infected_individuals_factor,infectiousness_factor
 
 
+##### Testing code and code for plotting the risk factors #####
 if __name__ == "__main__":
 
     FIGSIZE=[12,8]
@@ -157,6 +135,9 @@ if __name__ == "__main__":
     print(get_geo_risk(60,1,5,10,1))
     age_factor = f_age(np.arange(5,80))
     age_factor[age_factor<0] = 0
+
+
+    # to run the below code, first create  directory called "risk_model"
 
     plt.figure(figsize=FIGSIZE)
     plt.plot(np.arange(5,80),age_factor,c='#4b5d67')
@@ -196,8 +177,6 @@ if __name__ == "__main__":
     plt.savefig("risk_model/infectiousness.png",transparent=True)
 
     plt.figure(figsize=FIGSIZE)
-    #plt.bar([0, 1, 2], [0.29, 0.30, 0.42],color='#4b5d67')
-    #plt.xticks([0, 1, 2], ["hypertension", "respiratory\ndisease", "cardiovascular\ndisease"])
     plt.bar([0,1,2,3,4,5],[0.28,0.28,0.34,0.48,0.49,1.0],color='#4b5d67')
     plt.xticks([0, 1, 2, 3, 4, 5], ["Cardiovascular", "Diabetes", "Respiratory","Obesity","Hypertension", "Multiple"],rotation=45)
     plt.ylabel("Risk due to Comorbidity")
@@ -232,6 +211,3 @@ if __name__ == "__main__":
     plt.subplots_adjust(bottom=0.15)
     plt.savefig("risk_model/exposure.png",transparent=True)
 
-#print(getRiskIndividual(80,20,"male",2))
-#print(getRiskIndividual(80,20,"male"))
-#print(getRiskIndividual(30,10,"male",2,0.2))
