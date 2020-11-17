@@ -14,9 +14,10 @@ In the config.json file, we have several parameters. These parameters include th
 
 # Parameters in the config.json file: 
 
-"start_date": specify the start date of the simulation
-
-"entity_counts": specify the number for each of the 6 location types, which are residential, school, retail (shopping mall), employment, hospital and market.
+|Parameter Name|Parameter Description
+|---|---|
+|**start_date**| specify the start date of the simulation
+|entity_counts| specify the number for each of the 6 location types, which are residential, school, retail (shopping mall), employment, hospital and market.
 
 "POPULATION": The number of individuals in the simulation.
 
