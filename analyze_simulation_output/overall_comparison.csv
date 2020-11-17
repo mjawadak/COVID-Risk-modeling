@@ -1,0 +1,2 @@
+,Scenario,Population,Number_infected,Number_recovered,Number_deceased,shopping_mall_visits
+0,"Lockdown enabled,Self Isolation,Mask Compliance (0.5)",10000,895,880,15,3488
