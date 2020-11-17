@@ -1,24 +1,39 @@
 <header style="padding:10px;background:#f9f9f9;border-top:3px solid #00b2b1"><img id="Teradata-logo" src="https://www.teradata.com/Teradata/Images/Rebrand/Teradata_logo-two_color.png" alt="Teradata" width="220" align="right" />
  
-## Covid360: Risk Modeling and Simulation Framework
+# Covid360: Risk Modeling and Simulation Framework
 </header>
 
 
 This code allows us to simulate the spread of COVID-19 in urban environments (e.g. a city) and analyse the results.
 
+To perform What-If analyses, execute step 1 with different configurations (save the scenario ids), and then use ```analyze_simulation_output.py``` to plot the results.
 
-# How to run the simulations: 
+To calculate aggregated risks by location, execute Step 1 and then Step 3.
+
+## Step 1: Run the simulations: 
 To use the code we have first specify the parameters in the config.json file, which represents a given scenario, and then run the simulations by executing the run_simulation.py file locally on the machine.
 
 ```python run_simulation.py```
 
 In the config.json file, we have several parameters. These parameters include the population size, the number of different locations, the epidemic model parameters and the parameters to specify different scenarios e.g., lockdowns, self-isolation and contact tracing. A description of these parameters is given below:
 
-# Analyse the results:
-```python run_simulation.py```
- 
+After the execution of the script, two files will be created in the simulation_output folder with the corresponding "Scenario_ID".
 
-# Parameters in the config.json file: 
+## Step 2: Analyse the results:
+
+Change the "Scenario_ID" in ```analyze_simulation_output.py``` and execute it to generate the epidemiological curves for the number of active cases, recoveries, deaths and shopping mall visitors (retail and market) in the analyze_simulation_output folder.
+
+```python analyze_simulation_output.py```
+
+## Step 3 (optional): Compute and aggregate the individual risk scores by the locations in the simulation:
+
+Change the "Scenario_ID" in ```analyze_simulation_output.py``` and execute it to generate the epidemiological curves for the number of active cases, recoveries, deaths and shopping mall visitors (retail and market) in the analyze_simulation_output folder.
+
+```python consolidate_simulation_output_for_geo_risk.py```
+
+This will generate a new file with the same name in simulation_ouput folder with a  suffix "overall_geo_status". This csv file corresponds to the aggregated risk scores that can be visualized on a map using any tool including Tableau or d3.js.
+
+## Parameters in the config.json file: 
 |Parameter Name|Parameter Description
 |---|---|
 |**start_date**| specify the start date of the simulation
