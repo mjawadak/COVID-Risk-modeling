@@ -1,0 +1,92 @@
+{
+  "parameters": {
+    "start_date": "2020-01-01",
+    "entity_counts": {
+      "residential": 3560,
+      "school": 50,
+      "retail": 43,
+      "employment": 1100,
+      "hospital": 15,
+      "market": 40
+    },
+    "POPULATION": 10000,
+    "SCALE_FACTOR": 1,
+    "INTERVENTION_INFO": {
+      "flag": true,
+      "locked_entities": {"school": true,"employment": true,"retail": false,"market": false},
+      "threshold_infected": 500,
+      "lift_lockdown_threshold": 10,
+      "lockdown_entities_after_lift": {"school": true,"employment": true,"retail": false,"market": false},
+      "COMPLIANCE_RATE": 1.0
+    },
+    "SAVE_AGENT_LIST": {"flag":true, "hours_to_save": [0,8,16,19,22]},
+    "COMPLIANCE_RATE": 1.0,
+    "ZONE_INTERVENTION_INFO": {
+      "flag": false,
+      "ZONE_THRESHOLD_INFECTED": 30,
+      "ZONE_LOCK_DUR_DAYS": 14,
+      "ZONE_ID": [9],
+      "SEQUENTIAL": false
+    },
+    "NUM_ZONES": 10,
+    "SELF_ISOLATION": {
+      "flag": true,
+      "COMPLIANCE_RATE": 1.0
+    },
+    "HOSPITALIZATION": {
+      "flag": true
+    },
+    "MASK_COMPLIANCE": {
+      "flag": true,
+      "COMPLIANCE_RATE": 0.5,
+      "threshold": 500,
+      "MASK_INFECTION_FACTOR": [1,0.35]
+    },
+    "CONTACT_TRACING": {
+      "flag": false,
+      "PAST_DAYS": 3,
+      "ISOLATION_PERIOD": 14,
+      "threshold_infected": 500,
+      "COMPLIANCE_RATE": 1.0
+    },
+    "TESTING_INFO": {
+      "flag": true,
+      "daily_rate": 0.001,
+      "threshold_infected": 500
+    },
+    "ASYMPTOMATIC_RATIO_IN_RECOVERY_MODEL": {
+      "flag": true,
+      "ratio": 0.3
+    },
+    "MAX_DAYS_OF_INFECTION": 30,
+    "INFECTION_RATE_FACTOR": 5,
+    "w_shape": 1.75,
+    "w_scale": 6.9,
+    "meanlog": 1.798,
+    "sdlog": 0.521,
+    "NUMBER_ITERATIONS_PER_DAY": [],
+    "get_risk": false,
+    "TYPE_OF_JOB": {
+      "type": {"0": "No Job", "1": "Other job", "2": "Remote worker", "3": "Health worker"},
+      "prob": [0.85, 0.1, 0.05]
+    },
+    "MORBIDITY": {
+      "morbidity_infection_risk_factors" : {
+        "None": 1.0,
+        "Cardiovascular": 1.28,
+        "Diabetes": 1.28,
+        "Respiratory": 1.34,
+        "Obesity": 1.48,
+        "Hypertension": 1.49,
+        "Multiple": 2.0
+      },
+      "population_with_no_condition_table": {
+        "0-15": 1.0,
+        "15-25":0.95,
+        "25-55":0.85,
+        "55-65":0.4,
+        "65-10000":0.2
+      }
+    }
+  }
+}
