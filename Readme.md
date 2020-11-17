@@ -2,9 +2,9 @@
  
 # Covid360: Risk Modeling and Simulation Framework
 </header>
+We present the COVID360 solution that offers a set of risk models and a simulation tool that leverages several mathematical models to simulate the spread of COVID-19 in urban environments. Using COVID360, we can analyze the disease impact under different scenarios (e.g., lockdowns, self-isolation, and contact tracing).
 
-
-This code allows us to simulate the spread of COVID-19 in urban environments (e.g. a city) and analyse the results.
+This code allows us run the simulations and analyse the results.
 
 To perform What-If analyses, execute step 1 with different configurations (save the scenario ids), and then use ```analyze_simulation_output.py``` to plot the results.
 
