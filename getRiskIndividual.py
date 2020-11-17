@@ -1,23 +1,15 @@
 from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
-#from GetDataFromTranscend import getDataFromTranscend
 import numpy as np
 import pandas as pd
-#from infectiousnessModel import w_shape,w_scale
-#WEIGHTS = {"age":1,"proximity_factor":2,"gender":0.5,"nearby_infected_individuals":20,"infectiousness":4}# age,proximity,gender
+
 WEIGHTS = {"age":4,"proximity_factor":2,"gender":1,"nearby_infected_individuals":20,"infectiousness":4}# age,proximity,gender
 normalization_factor = np.sum(list(WEIGHTS.values()))
-'''age_risk_factor_list = [0,0.23,0.08,0.10,0.21,0.50,0.68,0.89]
-# 10 year bins: 0-10,10-20,20-30,30-40,40-50,50-60,60-70,70-80
-age_risk_factor_list = np.array(age_risk_factor_list)/np.max(age_risk_factor_list)
-ages = np.arange(0,80+80/7,80/7)#[0,10,20,30,40,50,60,70]
-
-
 gender_factor_list = [0.42,1.00] # female, male'''
 
 
 
-def getDataFromTranscend():
+def getData():
 
     age_vs_deathRate = pd.read_csv("data/age_vs_deathRate.csv")
 
@@ -46,7 +38,7 @@ def getDataFromTranscend():
     return ages, age_risk_factor_list, gender_factor_list
 
 
-ages,age_risk_factor_list,gender_factor_list = getDataFromTranscend() # fetch the data from transcend
+ages,age_risk_factor_list,gender_factor_list = getData() # fetch the data from transcend
 
 f_age = interp1d(ages,age_risk_factor_list,kind='cubic') # a continuous function for age
 # to build the age_Factor table in vantage
@@ -59,8 +51,8 @@ for age in np.arange(99):
 
 
 def get_infectiousness(x):
-    #w_shape = 2.83
-    #w_scale = 5.67
+    w_shape = 2.83
+    w_scale = 5.67
     return (w_shape / w_scale) * (x / w_scale)**(w_shape - 1) * np.exp(-(x / w_scale)**w_shape)
 
 
@@ -156,10 +148,7 @@ def get_geo_risk(avg_age,avg_gender,avg_days_since_infection,number_of_people_ar
 
     return risk,age_factor,gender_factor,proximity_factor,infected_individuals_factor,infectiousness_factor
 
-'''avg_days_since_infection = 0
-infectiousness_factor = min(get_infectiousness(avg_days_since_infection) / 0.2, 1.0)
-print(infectiousness_factor)'''
-#print(gender_factor_list)
+
 if __name__ == "__main__":
 
     FIGSIZE=[12,8]

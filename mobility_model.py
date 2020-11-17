@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-
 location_probabilities = pd.read_csv("data/mobility_model_data.csv")
 location_types = location_probabilities.iloc[:,2:].columns.values
 num_time_groups = location_probabilities["Time_of_day"].unique().shape[0]

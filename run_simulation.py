@@ -56,18 +56,8 @@ for a in np.arange(90):
     else:
         age_risk_list.append(1.0)
 
-# morbidity_infection_risk_factors = [1.0,1.3,1.3,1.4,1.6,1.7,1.7,2.0]
-
-POP_DIST = [0.25 * 9 / 14, 0.17, 0.42, 0.09, 0.07]  # 0-14,15-24,25-54,55-64,65-90
-POP_DIST = POP_DIST / np.sum(POP_DIST)
 
 
-def get_age():
-    # population distribution of indonesia
-    POP_BIN_MIN = [5, 15, 25, 55, 65]
-    POP_BIN_MAX = [14, 24, 54, 64, 80]
-    hist_bin = np.random.choice(np.arange(len(POP_DIST)), p=POP_DIST)
-    return np.random.randint(POP_BIN_MIN[hist_bin], POP_BIN_MAX[hist_bin])
 
 
 
@@ -88,7 +78,7 @@ NUM_RETAILS = int(config["entity_counts"]["retail"] / float(SCALE_FACTOR))
 NUM_WORKPLACES = int(config["entity_counts"]["employment"] / float(SCALE_FACTOR))
 NUM_HOSPITALS = int(config["entity_counts"]["hospital"] / float(SCALE_FACTOR))
 NUM_MARKETS = int(config["entity_counts"]["market"] / float(SCALE_FACTOR))
-POPULATION = int(config["POPULATION"] / float(SCALE_FACTOR))
+POPULATION = int(config["POPULATION"]["count"] / float(SCALE_FACTOR))
 INTERVENTION_INFO = config["INTERVENTION_INFO"]
 _d = np.array(list(INTERVENTION_INFO["locked_entities"].keys()))
 LOCKED_ENTITIES = _d[list(INTERVENTION_INFO["locked_entities"].values())].tolist()
@@ -121,7 +111,7 @@ for i in range(len(ENTITY_NUM_CUM) - 1):
 
 TOTAL_ENTITIES = np.sum(ENTITY_NUM)
 
-# incubation period parameters
+### incubation period parameters
 meanlog = config["meanlog"]  # 1.798#1.644 # 95% CI: 1.495–1.798dsi
 sdlog = config["sdlog"]  # 0.521#0.363 # 95% CI: 0.201–0.521
 incubation_dist = lognorm(s=[sdlog], scale=np.exp(meanlog))
@@ -148,6 +138,18 @@ morbidity_death_risk_factors = morbidity_infection_risk_factors
 TYPE_OF_JOB = config["TYPE_OF_JOB"]["type"]
 INCOME_MEANS = np.arange(15000, -1500, -1500)
 INCOME_MEANS[-1] = 500
+
+### Population parameters
+POP_DIST = config["POPULATION"]["distribution"]  # 0-14,15-24,25-54,55-64,65-90
+age_grp = np.array([i for i in map(lambda x: np.array(x.split("-")).astype(int), POP_DIST.keys())])
+age_grp = np.concatenate((age_grp, np.array([list(POP_DIST.values())]).T), axis=1)
+
+def get_age():
+    POP_BIN_MIN = age_grp[:,0]
+    POP_BIN_MAX = age_grp[:,1]
+    hist_bin = np.random.choice(np.arange(len(POP_DIST)), p=age_grp[:,2])
+    return np.random.randint(POP_BIN_MIN[hist_bin], POP_BIN_MAX[hist_bin])
+
 
 ##################################################### Infectious Model #####################################################
 w_shape = config["w_shape"]  # 1.75#2.83#1.75#2.83 # 1.75-4.7
@@ -500,12 +502,7 @@ def update_locations(current_datehour_in_simulation, COMPLIANCE_RATE, contact_tr
     # for e in entity_list:
     # e.current_list_of_agent_ids = []
     t_next_loc_type = 0
-    t21 = 0
-    t32 = 0
-    t43 = 0
-    t54 = 0
-    t3a_3 = 0
-    t4_3a = 0
+
     for_compliance = np.random.uniform(0.0, 1.0, POPULATION)
     for_self_isolation = np.random.uniform(0.0, 1.0, POPULATION)
     for_contact_tracing = np.random.uniform(0.0, 1.0, POPULATION)
