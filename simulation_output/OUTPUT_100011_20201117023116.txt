@@ -1,0 +1,18 @@
+
+-------------------------------- REPORT ---------------------------------
+Config = {'start_date': '2020-01-01', 'entity_counts': {'residential': 3560, 'school': 50, 'retail': 43, 'employment': 1100, 'hospital': 15, 'market': 40}, 'POPULATION': 10000, 'SCALE_FACTOR': 1, 'INTERVENTION_INFO': {'flag': False, 'locked_entities': {'school': True, 'employment': True, 'retail': False, 'market': False}, 'threshold_infected': 500, 'lift_lockdown_threshold': 500, 'lockdown_entities_after_lift': {'school': True, 'employment': True, 'retail': False, 'market': False}, 'COMPLIANCE_RATE': 1.0}, 'SAVE_AGENT_LIST': {'flag': False, 'hours_to_save': [0, 8, 16, 19, 22]}, 'COMPLIANCE_RATE': 1.0, 'ZONE_INTERVENTION_INFO': {'flag': False, 'ZONE_THRESHOLD_INFECTED': 30, 'ZONE_LOCK_DUR_DAYS': 14, 'ZONE_ID': [9], 'SEQUENTIAL': False}, 'NUM_ZONES': 10, 'SELF_ISOLATION': {'flag': True, 'COMPLIANCE_RATE': 1.0}, 'HOSPITALIZATION': {'flag': True}, 'MASK_COMPLIANCE': {'flag': True, 'COMPLIANCE_RATE': 0.5, 'threshold': 500, 'MASK_INFECTION_FACTOR': [1, 0.35]}, 'CONTACT_TRACING': {'flag': False, 'PAST_DAYS': 3, 'ISOLATION_PERIOD': 14, 'threshold_infected': 500, 'COMPLIANCE_RATE': 1.0}, 'TESTING_INFO': {'flag': True, 'daily_rate': 0.001, 'threshold_infected': 500}, 'ASYMPTOMATIC_RATIO_IN_RECOVERY_MODEL': {'flag': True, 'ratio': 0.3}, 'MAX_DAYS_OF_INFECTION': 30, 'INFECTION_RATE_FACTOR': 5, 'w_shape': 1.75, 'w_scale': 6.9, 'meanlog': 1.798, 'sdlog': 0.521, 'NUMBER_ITERATIONS_PER_DAY': [], 'get_risk': False, 'TYPE_OF_JOB': {'type': {'0': 'No Job', '1': 'Other job', '2': 'Remote worker', '3': 'Health worker'}, 'prob': [0.85, 0.1, 0.05]}, 'MORBIDITY': {'morbidity_infection_risk_factors': {'None': 1.0, 'Cardiovascular': 1.28, 'Diabetes': 1.28, 'Respiratory': 1.34, 'Obesity': 1.48, 'Hypertension': 1.49, 'Multiple': 2.0}, 'population_with_no_condition_table': {'0-15': 1.0, '15-25': 0.95, '25-55': 0.85, '55-65': 0.4, '65-10000': 0.2}}}
+Output file name = OUTPUT_100011_20201117023116
+Scenario = Self Isolation,Mask Compliance (0.5)
+Number of simulation hours run = 3199 (133 days)
+Total run time in seconds = 21226 (6.64 average secs taken to simulate one interval)
+Total Population = 10000
+Number of residences = 3560
+Number of schools = 50
+Number of workplaces = 1100
+Number of retail shops = 43
+SCALE_FACTOR = 1
+Number of Infected = 2836 (28% of total population)
+Number of Recovered = 2780 (28% of total population, 98% of total infected)
+Number of Deaths = 56 (1% of total population, 2% of total infected)
+R0 = 2.0142045454545454
+-------------------------------------------------------------------------
