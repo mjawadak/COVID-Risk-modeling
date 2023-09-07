@@ -70,4 +70,3 @@ This will generate a new file with the same name in simulation_ouput folder with
 |**TYPE_OF_JOB.prob**|Specify the distribution for all jobs except "No Job".
 |**MORBIDITY.morbidity_infection_risk_factors**| Specify the risk factors for the comorbidities.
 |**MORBIDITY.population_with_no_condition_table**| Percentage of each age group that has no comorbidity.
-<footer style="padding:10px;background:#f9f9f9;border-bottom:3px solid #394851">©2020 Teradata. All Rights Reserved</footer>
