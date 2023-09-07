@@ -1,4 +1,4 @@
-<header style="padding:10px;background:#f9f9f9;border-top:3px solid #00b2b1"><img id="Teradata-logo" src="https://www.teradata.com/Teradata/Images/Rebrand/Teradata_logo-two_color.png" alt="Teradata" width="220" align="right" />
+
  
 # Covid360: Risk Modeling and Simulation Framework
 </header>
